@@ -1,0 +1,80 @@
+body {
+    font-family: 'Helvetica Nueue', 'Helvetica', Helvetica, Arial,
+        sans-serif;
+    background-color: #ffffff;
+}
+
+.header {
+    text-align: center;
+    font-family: 'Helvetica Nueue', 'Helvetica', Helvetica, Arial,
+        sans-serif;
+}
+
+.title {
+    padding-left: 10px;
+    font-family: 'Helvetica Nueue', 'Helvetica', Helvetica, Arial,
+        sans-serif;
+}
+
+.topic-table {
+    padding-top: 20px;
+}
+
+.topic-head {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: #efefef;
+    font-family: 'Helvetica Nueue', 'Helvetica', Helvetica, Arial,
+        sans-serif;
+}
+
+.footer-table {
+    background-color: #efefef;
+}
+
+.footer {
+    padding-top: 20px;
+    padding-bottom: 40px;
+    font-family: 'Helvetica Nueue', 'Helvetica', Helvetica, Arial,
+        sans-serif;
+}
+
+.footer-table a {
+    text-decoration: underline;
+}
+
+.footer-footer {
+    padding-top: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    text-align: center;
+    font-size: 16px;
+    font-family: 'Helvetica Nueue', 'Helvetica', Helvetica, Arial,
+        sans-serif;
+}
+
+.footer-tagline {
+    padding-top: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    text-align: center;
+    font-size: 16px;
+    font-family: 'Helvetica Nueue', 'Helvetica', Helvetica, Arial,
+        sans-serif;
+}
+
+#banner-id {
+    width: 650px;
+}
+
+.separator-table {
+    padding-top: 20px;
+}
+
+.separator {
+    background-color: #686868;
+    height: 2px;
+    width: 100%;
+}
