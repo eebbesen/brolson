@@ -23,7 +23,6 @@ public class CssReaderImplTest extends TestCase {
     private void loadCssAsString(final String filename) throws IOException {
 	final File file = new File(TESTDATA_DIR + filename);
 	cssString = FileUtils.readFileToString(file);
-
     }
 
     @Test
