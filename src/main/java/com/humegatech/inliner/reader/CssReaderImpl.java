@@ -17,6 +17,6 @@ public class CssReaderImpl implements ICssReader {
 
     @Override
     public CascadingStyleSheet read(final String cssString) {
-	return CSSReader.readFromString(cssString, CHARSET, ECSSVersion.CSS30);
+        return CSSReader.readFromString(cssString, CHARSET, ECSSVersion.CSS30);
     }
 }
