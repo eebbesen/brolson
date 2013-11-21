@@ -75,24 +75,10 @@ public class CssInliner {
      * @return declarations for selector stripped of whitespace
      */
     protected static String getDeclarationsForClassSelector(final String classSelectorName, final String css) {
-        String declarationString = "";
-
         final String localClassSelectorName = classSelectorName.startsWith(".") ? classSelectorName : "."
                 + classSelectorName;
 
-        for (final CSSStyleRule styleRule : parseCss(css).getAllStyleRules()) {
-            for (final CSSSelector selector : styleRule.getAllSelectors()) {
-                if (selector.getAsCSSString(WRITER_SETTINGS, INDENT_LEVEL).equalsIgnoreCase(localClassSelectorName)) {
-                    for (final CSSDeclaration declaration : styleRule.getAllDeclarations()) {
-                        declarationString += declaration.getAsCSSString(WRITER_SETTINGS, INDENT_LEVEL) + ";";
-                    }
-
-                    break;
-                }
-            }
-        }
-
-        return declarationString;
+        return getDeclarations(localClassSelectorName, css);
     }
 
     /**
@@ -107,13 +93,25 @@ public class CssInliner {
      * @return declarations for selector stripped of whitespace
      */
     protected static String getDeclarationsForIdSelector(final String idSelectorName, final String css) {
-        String declarationString = "";
-
         final String localIdSelectorName = idSelectorName.startsWith("#") ? idSelectorName : "#" + idSelectorName;
 
+        return getDeclarations(localIdSelectorName, css);
+    }
+
+    /**
+     * Return the declarations for a CSS inlining (newlines, extra spaces, etc. removed). 
+     * 
+     * @param selectorName
+     *            CSS selector element name
+     * @param css
+     *            CSS document
+     * @return declarations for selector stripped of whitespace
+     */
+    private static String getDeclarations(final String selectorName, final String css) {
+        String declarationString = "";
         for (final CSSStyleRule styleRule : parseCss(css).getAllStyleRules()) {
             for (final CSSSelector selector : styleRule.getAllSelectors()) {
-                if (selector.getAsCSSString(WRITER_SETTINGS, INDENT_LEVEL).equalsIgnoreCase(localIdSelectorName)) {
+                if (selector.getAsCSSString(WRITER_SETTINGS, INDENT_LEVEL).equalsIgnoreCase(selectorName)) {
                     for (final CSSDeclaration declaration : styleRule.getAllDeclarations()) {
                         declarationString += declaration.getAsCSSString(WRITER_SETTINGS, INDENT_LEVEL) + ";";
                     }
