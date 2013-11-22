@@ -20,6 +20,11 @@ public class CssInliner {
     // supporting indented CSS yet)
     private static final int INDENT_LEVEL = 0;
 
+    // list of elements -- probably move this out to another class eventually
+    // and turn into enum
+    private static final String CLASS_SELECTOR = ".";
+    private static final String ID_SELECTOR = "#";
+
     /*
      * Passing true for the second parameter causes the writer to strip all
      * whitespace from the output: perfect for inlining
@@ -74,8 +79,7 @@ public class CssInliner {
      * @return declarations for selector stripped of whitespace
      */
     protected static String getDeclarationsForClassSelector(final String classSelectorName, final String css) {
-        final String localClassSelectorName = classSelectorName.startsWith(".") ? classSelectorName : "."
-                + classSelectorName;
+        final String localClassSelectorName = formatSelector(CLASS_SELECTOR, classSelectorName);
 
         return getDeclarations(localClassSelectorName, css);
     }
@@ -92,7 +96,7 @@ public class CssInliner {
      * @return declarations for selector stripped of whitespace
      */
     protected static String getDeclarationsForIdSelector(final String idSelectorName, final String css) {
-        final String localIdSelectorName = idSelectorName.startsWith("#") ? idSelectorName : "#" + idSelectorName;
+        final String localIdSelectorName = formatSelector(ID_SELECTOR, idSelectorName);
 
         return getDeclarations(localIdSelectorName, css);
     }
@@ -121,5 +125,9 @@ public class CssInliner {
         }
 
         return declarationString;
+    }
+
+    private static String formatSelector(final String type, final String selectorName) {
+        return selectorName.startsWith(type) ? selectorName : type + selectorName;
     }
 }
