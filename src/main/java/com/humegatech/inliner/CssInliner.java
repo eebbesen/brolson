@@ -59,7 +59,6 @@ public class CssInliner {
     protected static CascadingStyleSheet parseCss(final String css) {
         final CascadingStyleSheet aCss = CSSReader.readFromString(css, CHARSET, CSS_VERSION);
 
-        // TODO: null check and throw error if null?
         return aCss;
     }
 

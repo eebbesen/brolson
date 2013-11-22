@@ -71,6 +71,25 @@ public class CssInlinerTest extends TestCase {
         assertEquals("", CssInliner.getDeclarationsForClassSelector(HTML_MESSAGE_CLASS, ""));
     }
 
+    @Test
+    public void testParseCssNullCss() {
+        boolean exceptionThrown = false;
+
+        try {
+            CssInliner.parseCss(null);
+        }
+        catch (final NullPointerException npe) {
+            exceptionThrown = true;
+        }
+
+        assertTrue("Should have thrown NPE for null CSS", exceptionThrown);
+    }
+
+    @Test
+    public void testParseCssEmptyCss() {
+        CssInliner.parseCss("");
+    }
+
     /*
      * Not run as part of suite but helpful for figuring out what Phloc is doing
      */
