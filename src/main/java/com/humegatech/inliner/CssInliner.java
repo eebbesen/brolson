@@ -61,12 +61,6 @@ public class CssInliner {
         return (StringUtils.isNotBlank(idDeclarations) ? idDeclarations : "");
     }
 
-    protected static CascadingStyleSheet parseCss(final String css) {
-        final CascadingStyleSheet aCss = CSSReader.readFromString(css, CHARSET, CSS_VERSION);
-
-        return aCss;
-    }
-
     /**
      * Return the declarations for a CSS class selector as a String suitable for
      * inlining (newlines, extra spaces, etc. removed). Assumes '.' starts class
@@ -110,7 +104,7 @@ public class CssInliner {
      *            CSS document
      * @return declarations for selector stripped of whitespace
      */
-    private static String getDeclarations(final String selectorName, final String css) {
+    protected static String getDeclarations(final String selectorName, final String css) {
         String declarationString = "";
         for (final CSSStyleRule styleRule : parseCss(css).getAllStyleRules()) {
             for (final CSSSelector selector : styleRule.getAllSelectors()) {
@@ -125,6 +119,19 @@ public class CssInliner {
         }
 
         return declarationString;
+    }
+
+    /**
+     * Wraps whatever CSS parse implementation we're using 
+     * 
+     * @param css
+     *            CSS document
+     * @return CascadingStyleSheet object representing the CSS
+     */
+    protected static CascadingStyleSheet parseCss(final String css) {
+        final CascadingStyleSheet aCss = CSSReader.readFromString(css, CHARSET, CSS_VERSION);
+
+        return aCss;
     }
 
     private static String formatSelector(final String type, final String selectorName) {
