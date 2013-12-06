@@ -32,43 +32,57 @@ public class CssInlinerTest extends TestCase {
 
     @Test
     public void testGetDeclarationsForClassSelectorClassClassNotInCss() {
-        assertEquals("", CssInliner.getDeclarationsForClassSelector("not_here", CSS));
+        assertEquals("", CssInliner.getDeclarationsForSelector(CssSelector.CLASS_SELECTOR, "not_here", CSS));
     }
 
     @Test
-    public void testGetDeclarationsForIdSelector() {
+    public void testGetDeclarationsForSelector() {
         // '#' as part of class selector
-        assertEquals(stripWhitespace(BANNER_ID_DECLARATION), CssInliner.getDeclarationsForIdSelector(BANNER_ID, CSS));
+        assertEquals(stripWhitespace(BANNER_ID_DECLARATION),
+                CssInliner.getDeclarationsForSelector(CssSelector.ID_SELECTOR, BANNER_ID, CSS));
 
         // no '#' as part of class selector
         assertEquals(stripWhitespace(BANNER_ID_DECLARATION),
-                CssInliner.getDeclarationsForIdSelector(BANNER_ID.substring(1), CSS));
+                CssInliner.getDeclarationsForSelector(CssSelector.ID_SELECTOR, BANNER_ID.substring(1), CSS));
+    }
+
+    @Test
+    public void testGetDeclarationsForSelectorId() {
+        // '#' as part of class selector
+        assertEquals(stripWhitespace(BANNER_ID_DECLARATION),
+                CssInliner.getDeclarationsForSelector(CssSelector.ID_SELECTOR, BANNER_ID, CSS));
+
+        // no '#' as part of class selector
+        assertEquals(stripWhitespace(BANNER_ID_DECLARATION),
+                CssInliner.getDeclarationsForSelector(CssSelector.ID_SELECTOR, BANNER_ID.substring(1), CSS));
     }
 
     @Test
     public void testGetDeclarationsForClassSelector() {
         // '.' as part of id selector
         assertEquals(stripWhitespace(HTML_MESSAGE_CLASS_DECLARATION),
-                CssInliner.getDeclarationsForClassSelector(HTML_MESSAGE_CLASS, CSS));
+                CssInliner.getDeclarationsForSelector(CssSelector.CLASS_SELECTOR, HTML_MESSAGE_CLASS, CSS));
         assertEquals(stripWhitespace(BANNER_CLASS_DECLARATION),
-                CssInliner.getDeclarationsForClassSelector(BANNER_CLASS, CSS));
+                CssInliner.getDeclarationsForSelector(CssSelector.CLASS_SELECTOR, BANNER_CLASS, CSS));
 
         // no '.' as part of id selector
         assertEquals(stripWhitespace(HTML_MESSAGE_CLASS_DECLARATION),
-                CssInliner.getDeclarationsForClassSelector(HTML_MESSAGE_CLASS.substring(1), CSS));
+                CssInliner.getDeclarationsForSelector(CssSelector.CLASS_SELECTOR, HTML_MESSAGE_CLASS.substring(1), CSS));
         assertEquals(stripWhitespace(BANNER_CLASS_DECLARATION),
-                CssInliner.getDeclarationsForClassSelector(BANNER_CLASS.substring(1), CSS));
+                CssInliner.getDeclarationsForSelector(CssSelector.CLASS_SELECTOR, BANNER_CLASS.substring(1), CSS));
     }
 
     @Test
     public void testGetDeclarationsForClassSelectorClassMalformedCss() {
-        assertEquals("", CssInliner.getDeclarationsForClassSelector(HTML_MESSAGE_CLASS + " {"
-                + HTML_MESSAGE_CLASS_DECLARATION, CSS));
+        assertEquals(
+                "",
+                CssInliner.getDeclarationsForSelector(CssSelector.CLASS_SELECTOR, HTML_MESSAGE_CLASS + " {"
+                        + HTML_MESSAGE_CLASS_DECLARATION, CSS));
     }
 
     @Test
     public void testGetDeclarationsForClassSelectorClassEmptyCss() {
-        assertEquals("", CssInliner.getDeclarationsForClassSelector(HTML_MESSAGE_CLASS, ""));
+        assertEquals("", CssInliner.getDeclarationsForSelector(CssSelector.CLASS_SELECTOR, HTML_MESSAGE_CLASS, ""));
     }
 
     @Test

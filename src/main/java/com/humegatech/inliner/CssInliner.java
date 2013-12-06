@@ -36,7 +36,7 @@ public class CssInliner {
      * @return String representing inlined css
      */
     public static String inlineCssClass(final String css, final String cssClassSelector) {
-        final String classDeclarations = getDeclarationsForClassSelector(cssClassSelector, css);
+        final String classDeclarations = getDeclarationsForSelector(CssSelector.CLASS_SELECTOR, cssClassSelector, css);
 
         return (StringUtils.isNotBlank(classDeclarations) ? classDeclarations : null);
     }
@@ -51,43 +51,27 @@ public class CssInliner {
      * @return String representing inlined css
      */
     public static String inlineCssId(final String css, final String cssIdSelector) {
-        final String idDeclarations = getDeclarationsForIdSelector(cssIdSelector, css);
+        final String idDeclarations = getDeclarationsForSelector(CssSelector.ID_SELECTOR, cssIdSelector, css);
 
         return (StringUtils.isNotBlank(idDeclarations) ? idDeclarations : "");
     }
 
     /**
-     * Return the declarations for a CSS class selector as a String suitable for
-     * inlining (newlines, extra spaces, etc. removed). Assumes '.' starts class
+     * Return the declarations for a CSS selector of your choice as a String suitable for
+     * inlining (newlines, extra spaces, etc. removed). Assumes CssSelector.selector starts
      * selector name so will append it if missing.
      * 
-     * @param classSelectorName
+     * @param selectorName
      *            CSS selector element name
      * @param css
      *            CSS document
      * @return declarations for selector stripped of whitespace
      */
-    protected static String getDeclarationsForClassSelector(final String classSelectorName, final String css) {
-        final String localClassSelectorName = formatSelector(CssSelector.CLASS_SELECTOR, classSelectorName);
+    protected static String getDeclarationsForSelector(final CssSelector selector, final String selectorName,
+            final String css) {
+        final String localSelectorName = formatSelector(selector, selectorName);
 
-        return getDeclarations(localClassSelectorName, css);
-    }
-
-    /**
-     * Return the declarations for a CSS id selector as a String suitable for
-     * inlining (newlines, extra spaces, etc. removed). Assumes '#' starts id
-     * selector name so will append it if missing.
-     * 
-     * @param idSelectorName
-     *            CSS selector element name
-     * @param css
-     *            CSS document
-     * @return declarations for selector stripped of whitespace
-     */
-    protected static String getDeclarationsForIdSelector(final String idSelectorName, final String css) {
-        final String localIdSelectorName = formatSelector(CssSelector.ID_SELECTOR, idSelectorName);
-
-        return getDeclarations(localIdSelectorName, css);
+        return getDeclarations(localSelectorName, css);
     }
 
     /**
