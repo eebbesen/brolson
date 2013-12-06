@@ -27,7 +27,7 @@ public class CssInliner {
     private static final ICSSWriterSettings WRITER_SETTINGS = new CSSWriterSettings(ECSSVersion.CSS30, true);
 
     /**
-     * Will take CSS and a class selector and will produce the css inlined
+     * Take CSS and a class selector and produce the css inlined
      * 
      * @param css
      *            CSS
@@ -42,7 +42,7 @@ public class CssInliner {
     }
 
     /**
-     * Will take CSS and an id selector and will produce a tag the css inlined
+     * Take CSS and an id selector and produce the css inlined
      * 
      * @param css
      *            CSS
