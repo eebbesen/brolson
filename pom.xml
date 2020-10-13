@@ -18,7 +18,7 @@
           <id>central</id>
           <name>Maven Repository Switchboard</name>
           <layout>default</layout>
-          <url>http://repo1.maven.org/maven2</url>
+          <url>https://repo1.maven.org/maven2</url>
           <releases>
             <enabled>true</enabled>
           </releases>
@@ -27,7 +27,7 @@
           </snapshots>
         </repository>
         <repository>
-          <id>phloc.com</id>    
+          <id>phloc.com</id>
           <url>http://repo.phloc.com/maven2</url>
           <releases>
             <enabled>true</enabled>
@@ -40,31 +40,33 @@
       <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <maven.compiler.source>1.8</maven.compiler.source>
         <sourceEncoding>UTF-8</sourceEncoding>
-       </properties> 
+       </properties>
     </profile>
   </profiles>
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <version>4.11</version>
+      <version>4.13.1</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>com.phloc</groupId>
       <artifactId>phloc-commons</artifactId>
-      <version>4.0.11</version>
+      <version>4.6.7</version>
     </dependency>
     <dependency>
       <groupId>com.phloc</groupId>
       <artifactId>phloc-css</artifactId>
-      <version>3.6.0</version>
+      <version>3.8.0</version>
     </dependency>
     <dependency>
       <groupId>com.phloc</groupId>
       <artifactId>phloc-html</artifactId>
-      <version>3.9.4</version>
+      <version>4.4.8</version>
     </dependency>
     <dependency>
       <groupId>org.apache.commons</groupId>
